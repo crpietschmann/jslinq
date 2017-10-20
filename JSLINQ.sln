@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website", "{397777F9-0620-4C99-B329-B09AB03D85F3}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/Website"
+		Debug.AspNetCompiler.PhysicalPath = "Website\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Website"
+		Release.AspNetCompiler.PhysicalPath = "Website\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Website\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1560"
+		SlnRelativePath = "Website\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{9CC0875D-29D0-447F-8231-E9F4D7F03C14}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\jslinq.2.10.1.nupkg = Nuget\jslinq.2.10.1.nupkg
+		Nuget\jslinq.2.10.nupkg = Nuget\jslinq.2.10.nupkg
+		Nuget\NuGet.exe = Nuget\NuGet.exe
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{C9B10C36-5744-4D25-8BE8-1E993624D4DB}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\package\jslinq.nuspec = Nuget\package\jslinq.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{59D05196-6DEF-4FD2-95EF-E625094232BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{C4E3084D-1B0F-47F8-8CEE-8533E0E85EDD}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\package\Content\Scripts\JSLINQ-vsdoc.js = Nuget\package\Content\Scripts\JSLINQ-vsdoc.js
+		Nuget\package\Content\Scripts\JSLINQ.js = Nuget\package\Content\Scripts\JSLINQ.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs06
+		SccLocalPath0 = .
+		SccWebProject1 = true
+		SccProjectUniqueName1 = Website
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = Website\\
+		SccProjectEnlistmentChoice1 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{397777F9-0620-4C99-B329-B09AB03D85F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397777F9-0620-4C99-B329-B09AB03D85F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9B10C36-5744-4D25-8BE8-1E993624D4DB} = {9CC0875D-29D0-447F-8231-E9F4D7F03C14}
+		{59D05196-6DEF-4FD2-95EF-E625094232BB} = {C9B10C36-5744-4D25-8BE8-1E993624D4DB}
+		{C4E3084D-1B0F-47F8-8CEE-8533E0E85EDD} = {59D05196-6DEF-4FD2-95EF-E625094232BB}
+	EndGlobalSection
+EndGlobal
