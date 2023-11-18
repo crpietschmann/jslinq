@@ -1,8 +1,8 @@
 ﻿//-----------------------------------------------------------------------
 // Visual Studio JavaScript Intellisense Helper for LINQ to JavaScript
-// Part of the LINQ to JavaScript (JSLINQ) v2.20 Project - http://jslinq.codeplex.com
-// Copyright (C) 2012 Chris Pietschmann (http://pietschsoft.com). All rights reserved.
-// This license can be found here: http://jslinq.codeplex.com/license
+// LINQ to JavaScript (JSLINQ) Project - https://github.com/crpietschmann/jslinq
+// Copyright (c) 2012-2023 Chris Pietschmann (http://pietschsoft.com)
+// This license can be found here: https://github.com/crpietschmann/jslinq/blob/master/LICENSE
 //-----------------------------------------------------------------------
 JSLINQ = function(dataItems) {
     /// <summary>The JSLINQ Object that provides LINQ query syntax to work with JavaScript Arrays.</summary>

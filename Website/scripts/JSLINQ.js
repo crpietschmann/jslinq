@@ -1,7 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// Part of the LINQ to JavaScript (JSLINQ) v2.20 Project - http://jslinq.codeplex.com
-// Copyright (C) 2012 Chris Pietschmann (http://pietschsoft.com). All rights reserved.
-// This license can be found here: http://jslinq.codeplex.com/license
+// LINQ to JavaScript (JSLINQ) Project - https://github.com/crpietschmann/jslinq
+// Copyright (c) 2012-2023 Chris Pietschmann (http://pietschsoft.com)
+// This license can be found here: https://github.com/crpietschmann/jslinq/blob/master/LICENSE
 //-----------------------------------------------------------------------
 (function () {
     var JSLINQ = window.jslinq = window.JSLINQ = function (dataItems) {
@@ -9,9 +9,6 @@
     },
     utils = {
         processLambda: function (clause) {
-            // This piece of "handling" C#-style Lambda expression was borrowed from:
-            // linq.js - LINQ for JavaScript Library - http://lingjs.codeplex.com
-            // THANK!!
             if (utils.isLambda(clause)) {
                 var expr = clause.match(/^[(\s]*([^()]*?)[)\s]*=>(.*)/);
                 return new Function(expr[1], "return (" + expr[2] + ")");
@@ -41,63 +38,60 @@
         },
 
         // The current version of JSLINQ being used
-        jslinq: "2.20",
+        jslinq: '2.30',
 
         toArray: function () { return this.items; },
+        forEach: function (callback) {
+            this.items.forEach(callback);
+            return this;
+        },
         where: function (clause) {
-            var newArray = [], len = this.items.length;
-
+            var newArray = [];
             // The clause was passed in as a Method that return a Boolean
-            for (var i = 0; i < len; i++) {
-                if (clause.apply(this.items[i], [this.items[i], i])) {
-                    newArray[newArray.length] = this.items[i];
-                }
-            }
+            this.forEach((item, i) => {
+                if (clause.apply(item, [item, i])) newArray[newArray.length] = item;
+            });
             return JSLINQ(newArray);
         },
         select: function (clause) {
-            var item, newArray = [], field = clause;
+            var newArray = [], field = clause;
             if (typeof (clause) !== "function") {
                 if (clause.indexOf(",") === -1) {
                     clause = function () { return this[field]; };
                 } else {
                     clause = function () {
-                        var i, fields = field.split(","), obj = {};
-                        for (i = 0; i < fields.length; i++) {
-                            obj[fields[i]] = this[fields[i]];
-                        }
+                        var obj = {};
+                        field.split(',').forEach((f) => {
+                            obj[f] = this[f];
+                        });
                         return obj;
                     };
                 }
             }
 
             // The clause was passed in as a Method that returns a Value
-            for (var i = 0; i < this.items.length; i++) {
-                item = clause.apply(this.items[i], [this.items[i]]);
-                if (item) {
-                    newArray[newArray.length] = item;
-                }
-            }
+            this.forEach((item, i) => {
+                val = clause.apply(item, [item]);
+                if (val) newArray[newArray.length] = val;
+            });
             return JSLINQ(newArray);
         },
         orderBy: function (clause) {
             var tempArray = [];
-            for (var i = 0; i < this.items.length; i++) {
-                tempArray[tempArray.length] = this.items[i];
-            }
+            this.forEach((item) => {
+                tempArray.push(item);
+            });
 
             if (typeof (clause) !== "function") {
                 var field = clause;
                 if (utils.isLambda(field)) {
                     clause = utils.processLambda(field);
-                }
-                else {
+                } else {
                     clause = function () { return this[field]; };
                 }
             }
 
-            return JSLINQ(
-            tempArray.sort(function (a, b) {
+            return JSLINQ(tempArray.sort(function (a, b) {
                 var x = clause.apply(a, [a]), y = clause.apply(b, [b]);
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             })
@@ -105,16 +99,15 @@
         },
         orderByDescending: function (clause) {
             var tempArray = [], field;
-            for (var i = 0; i < this.items.length; i++) {
-                tempArray[tempArray.length] = this.items[i];
-            }
+            this.forEach((item) => {
+                tempArray.push(item);
+            });
 
             if (typeof (clause) !== "function") {
                 field = clause;
                 if (utils.isLambda(field)) {
                     clause = utils.processLambda(field);
-                }
-                else {
+                } else {
                     clause = function () { return this[field]; };
                 }
             }
@@ -126,40 +119,41 @@
         },
         selectMany: function (clause) {
             var r = [];
-            for (var i = 0; i < this.items.length; i++) {
-                r = r.concat(clause.apply(this.items[i], [this.items[i]]));
-            }
+            this.forEach((item) => {
+                r = r.concat(clause.apply(item, [item]));
+            });
             return JSLINQ(r);
         },
         count: function (clause) {
             if (clause === undefined) {
                 return this.items.length;
-            } else {
-                return this.Where(clause).items.length;
             }
+            return this.Where(clause).items.length;
         },
         distinct: function (clause) {
-            var item, dict = {}, retVal = [];
-            for (var i = 0; i < this.items.length; i++) {
-                item = clause.apply(this.items[i], [this.items[i]]);
+            var dict = {}, retVal = [];
+            this.forEach((item) => {
+                var val = clause.apply(item, [item]);
                 // TODO - This doesn't correctly compare Objects. Need to fix this
-                if (dict[item] === undefined) {
-                    dict[item] = true;
-                    retVal.push(item);
+                if (dict[val] === undefined) {
+                    dict[val] = true;
+                    retVal.push(val);
                 }
-            }
+            });
             dict = null;
             return JSLINQ(retVal);
         },
         any: function (clause) {
+            var item;
             for (var i = 0; i < this.items.length; i++) {
-                if (clause.apply(this.items[i], [this.items[i], i])) { return true; }
+                item = this.items[i];
+                if (clause.apply(item, [item, i])) return true;
             }
             return false;
         },
         all: function (clause) {
             for (var i = 0; i < this.items.length; i++) {
-                if (!clause(this.items[i], i)) { return false; }
+                if (!clause(this.items[i], i)) return false;
             }
             return true;
         },
@@ -173,28 +167,22 @@
         first: function (clause) {
             if (clause !== undefined) {
                 return this.Where(clause).First();
-            }
-            else {
+            } else if (this.items.length > 0) {
                 // If no clause was specified, then return the First element in the Array
-                if (this.items.length > 0) {
-                    return this.items[0];
-                } else {
-                    return null;
-                }
+                return this.items[0];
             }
+            return null;
         },
         last: function (clause) {
             if (clause !== undefined) {
                 return this.Where(clause).Last();
-            }
-            else {
+            } else {
                 // If no clause was specified, then return the First element in the Array
                 if (this.items.length > 0) {
                     return this.items[this.items.length - 1];
-                } else {
-                    return null;
                 }
             }
+            return null;
         },
         elementAt: function (i) {
             return this.items[i];
@@ -204,16 +192,16 @@
             return JSLINQ(this.items.concat(arr));
         },
         intersect: function (secondArray, clause) {
-            var clauseMethod, sa = (secondArray.items || secondArray), result = [];
+            var method, sa = (secondArray.items || secondArray), result = [];
             if (clause !== undefined) {
-                clauseMethod = clause;
+                method = clause;
             } else {
-                clauseMethod = function (item, index, item2, index2) { return item === item2; };
+                method = (item, i1, item2, i2) => item === item2;
             }
 
             for (var a = 0; a < this.items.length; a++) {
                 for (var b = 0; b < sa.length; b++) {
-                    if (clauseMethod(this.items[a], a, sa[b], b)) {
+                    if (method(this.items[a], a, sa[b], b)) {
                         result[result.length] = this.items[a];
                     }
                 }
@@ -268,6 +256,7 @@
 
     (function (fn) {
         fn.ToArray = fn.toArray;
+        fn.ForEach = fn.forEach;
         fn.Where = fn.where;
         fn.Select = fn.select;
         fn.OrderBy = fn.orderBy;

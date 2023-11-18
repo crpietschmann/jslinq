@@ -1,8 +1,6 @@
 # LINQ to JavaScript
 
-LINQ to JavaScript (JSLINQ) is LINQ to Objects for JavaScript arrays, and adds power and flexibility of LINQ style queries to traditional JavaScript code.
-
-**FYI, this project was migrated here from Codeplex before it shutdown.**
+LINQ to JavaScript (`JSLINQ`) is LINQ to Objects for JavaScript arrays, and adds power and flexibility of LINQ style queries to traditional JavaScript code.
 
 ## What is LINQ to JavaScript?
 
@@ -16,7 +14,7 @@ LINQ to JavaScript (JSLINQ for short) is an implementation of LINQ to Objects im
 
 ## Example Usage
 
-If you don't know what LINQ is; it's a new featureset in the .NET Framework 3.5 that allows more SQL-like querying of any kind of data. In the case of LINQ to JavaScript, it provides the ability to query against Arrays.
+If you don't know what LINQ it's a feature set in the .NET development framework that allows more SQL-like querying of any kind of data. In the case of `JSLINQ` / LINQ to JavaScript, it provides the ability to query against Arrays.
 
     var myList = [
         {FirstName:"Chris",LastName:"Pearson"},
@@ -30,7 +28,6 @@ If you don't know what LINQ is; it's a new featureset in the .NET Framework 3.5 
        .Where(function(item){ return item.FirstName == "Chris"; })
        .OrderBy(function(item) { return item.FirstName; })
        .Select(function(item){ return item.FirstName; });
-
 
 ## Using LINQ to JavaScript
 
@@ -49,7 +46,6 @@ We will use this Array for the following examples:
 You need to create a new JSLINQ object and pass it the javascript array of data that you will be querying.
 
     var example = JSLINQ(myList);
-
 
 **Using the Where operator to specify query criteria**
 
@@ -72,8 +68,7 @@ In this case, we're going to order them by the FirstName property.
     var sortTest1 = JSLINQ(myList)
          .OrderBy(function(item){ return item.FirstName; });
 
-
-## News
+## Related Links
 
 [JSLinq Editor](http://secretgeek.net/JsLinq/)
 

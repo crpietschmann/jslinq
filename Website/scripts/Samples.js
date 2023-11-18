@@ -1,8 +1,8 @@
 ﻿/// <reference name="JSLINQ.js" />
 //-----------------------------------------------------------------------
-// Part of the LINQ to JavaScript (JSLINQ) v2.20 Project - http://jslinq.codeplex.com
-// Copyright (C) 2012 Chris Pietschmann (http://pietschsoft.com). All rights reserved.
-// This license can be found here: http://jslinq.codeplex.com/license
+// Part of the LINQ to JavaScript (JSLINQ) v2.x Project - https://github.com/crpietschmann/jslinq
+// Copyright (C) 2012-2023 Chris Pietschmann (http://pietschsoft.com)
+// This license can be found here: https://github.com/crpietschmann/jslinq/blob/master/LICENSE
 //-----------------------------------------------------------------------
 var Samples = {};
 
@@ -88,20 +88,25 @@ Samples.RunTests = function(){
     var strFailedTest = "";
     
     var start = (new Date()).getTime();
-    
-    for(var g = 0; g < Samples.SampleList.length; g++)
-    {
-        for(var i = 0; i < Samples.SampleList[g].Samples.length; i++)
-        {
-            var s = eval("new " + Samples.SampleList[g].Samples[i] + "()");
-            if (s.Test()) {
-                successCount++;
-            } else {
+
+    Samples.SampleList.forEach((sampleList) => {
+        sampleList.Samples.forEach((sample) => {
+            var s = eval("new " + sample + "()");
+            try {
+                var result = s.Test();
+                if (result) {
+                    successCount++;
+                } else {
+                    failureCount++;
+                    strFailedTest += sample + "<br/>";
+                }
+            } catch (error) {
+                console.error(`Unit Test: ${sample} - ${error}`);
                 failureCount++;
-                strFailedTest += Samples.SampleList[g].Samples[i] + "<br/>";
+                strFailedTest += sample + "<br/>";
             }
-        }
-    }
+        });
+    });
     
     var end = (new Date()).getTime();
     
@@ -179,19 +184,12 @@ Samples.Where01 = function(){
 Samples.Where01.prototype = {
     Code: function() {
     var sample = JSLINQ(Samples.People).
-            Where(function(){return this.FirstName == 'Chris';});
+            Where((item) => item.FirstName == 'Chris');
         return sample;
     },
     Test:function(){
-        try
-        {
-            var r = this.Code().items;
-            return (r.length == 2);
-        }
-        catch(ex)
-        {
-            return false;
-        }
+        var r = this.Code().items;
+        return (r.length == 2);
     }
 };
 
@@ -208,15 +206,8 @@ Samples.Where02.prototype = {
         return sample;
     },
     Test:function(){
-        try
-        {
             var r = this.Code().items;
             return (r.length == 1);
-        }
-        catch(ex)
-        {
-            return false;
-        }
     }
 };
 
@@ -229,21 +220,16 @@ Samples.Where03 = function () {
 Samples.Where03.prototype = {
     Code: function () {
         var sample = JSLINQ(Samples.People).
-            Where(function (item, index) {
+            Where((item, index) => {
                 return JSLINQ(item.BookIDs)
-                    .Where(function (item) { return item == 1002; })
+                    .Where((item) => item == 1002)
                     .Count() > 0;
             });
         return sample;
     },
     Test: function () {
-        try {
-            var r = this.Code().items;
-            return (r.length == 2);
-        }
-        catch (ex) {
-            return false;
-        }
+        var r = this.Code().items;
+        return (r.length == 2);
     }
 };
 
@@ -255,21 +241,14 @@ Samples.Select01 = function(){
     this.View = Samples.Views.StringArray;
 };
 Samples.Select01.prototype = {
-    Code:function(){
-    var sample = JSLINQ(Samples.People).
-            Select(function(){return this.FirstName;});
+    Code: function(){
+        var sample = JSLINQ(Samples.People).
+            Select((x) => x.FirstName);
         return sample;
     },
-    Test:function(){
-        try
-        {
-            var r = this.Code().items;
-            return (r.length == 10 && typeof(r[0]) == 'string');
-        }
-        catch(ex)
-        {
-            return false;
-        }
+    Test: function(){
+        var r = this.Code().items;
+        return (r.length == 10 && typeof(r[0]) == 'string');
     }
 };
 
@@ -286,13 +265,10 @@ Samples.Select02.prototype = {
         return sample;
     },
     Test: function() {
-        try {
+
             var r = this.Code().items;
             return (r.length == 10 && typeof (r[0]) == 'string');
-        }
-        catch (ex) {
-            return false;
-        }
+
     }
 };
 
@@ -309,23 +285,18 @@ Samples.Select03.prototype = {
         return sample;
     },
     Test: function () {
-        try {
-            var r = this.Code().items;
-            return (r.length == 10 && 
-                r[0].ID == 1 &&
-                r[1].ID == 2 &&
-                r[2].ID == 3 &&
-                r[3].ID == 4 &&
-                r[4].ID == 5 &&
-                r[5].ID == 6 &&
-                r[6].ID == 7 &&
-                r[7].ID == 8 &&
-                r[8].ID == 9 &&
-                r[9].ID == 10);
-        }
-        catch (ex) {
-            return false;
-        }
+        var r = this.Code().items;
+        return (r.length == 10 && 
+            r[0].ID == 1 &&
+            r[1].ID == 2 &&
+            r[2].ID == 3 &&
+            r[3].ID == 4 &&
+            r[4].ID == 5 &&
+            r[5].ID == 6 &&
+            r[6].ID == 7 &&
+            r[7].ID == 8 &&
+            r[8].ID == 9 &&
+            r[9].ID == 10);
     }
 };
 
@@ -340,7 +311,7 @@ Samples.SelectMany01 = function(){
 Samples.SelectMany01.prototype = {
     Code:function(){
     var sample = JSLINQ(Samples.People).
-            SelectMany(function(){return this.BookIDs;});
+            SelectMany((item) => item.BookIDs);
         return sample;
     },
     Test:function(){
@@ -590,15 +561,8 @@ Samples.Distinct01.prototype = {
         return sample;
     },
     Test:function(){
-        try
-        {
-            var r = this.Code().items;
-            return (r.length == 8);
-        }
-        catch(ex)
-        {
-            return false;
-        }
+        var r = this.Code().items;
+        return (r.length == 8);
     }
 };
 
@@ -617,14 +581,7 @@ Samples.Any01.prototype = {
         return sample;
     },
     Test:function(){
-        try
-        {
-            return (this.Code() == true);
-        }
-        catch(ex)
-        {
-            return false;
-        }
+        return (this.Code() == true);
     }
 };
 

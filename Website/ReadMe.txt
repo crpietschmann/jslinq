@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// Part of the LINQ to JavaScript (JSLINQ) v2.10 Project - http://jslinq.codeplex.com
-// Copyright (C) 2012 Chris Pietschmann (http://pietschsoft.com). All rights reserved.
-// This license can be found here: http://jslinq.codeplex.com/license
+// Part of the LINQ to JavaScript (JSLINQ) v2.x Project - https://github.com/crpietschmann/jslinq
+// Copyright (C) 2012-2023 Chris Pietschmann (http://pietschsoft.com)
+// This license can be found here: https://github.com/crpietschmann/jslinq/blob/master/LICENSE
 //-----------------------------------------------------------------------
 
-LINQ To JavaScript Project - http://jslinq.codeplex.com
+LINQ To JavaScript Project - https://github.com/crpietschmann/jslinq
 
 To Run the Interactive SDK:
 - Open up the Default.htm file in a web browser
@@ -17,6 +17,12 @@ To include JSLINQ within a website:
 
 JSLINQ Change Log
 -----------------
+Version 2.3 (11/17/2023)
+-------------
+- Cleaned up Javascript code to be a little more clean as per modern javascript standards
+- Updated License and other links to point to Github project
+- Add `forEach(callback)` function to JSLINQ object
+
 Version 2.2
 -------------
 - Added lower case "jslinq" option that can be used interchangably with "JSLINQ"
@@ -69,7 +75,7 @@ Version 2.2
 - Replaced "index" variable name with "i" for iterator loops in JSLINQ.js. Just to make the file a little bit smaller.
 
 
-Version 2.10
+Version 2.10 (4/20/2015)
 -------------
 - Modified the JSLINQ object to allow you to create an instance of JSLINQ containing an Array of elements
 using either of the following methods:

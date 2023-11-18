@@ -3,15 +3,15 @@
   <metadata>
     <id>jslinq</id>
     <title>LINQ to JavaScript</title>
-    <version>2.10.1</version>
+    <version>2.30</version>
     <authors>Chris Pietschmann</authors>
     <owners>Chris Pietschmann</owners>
-    <licenseUrl>http://jslinq.codeplex.com/license</licenseUrl>
-    <projectUrl>http://jslinq.codeplex.com</projectUrl>
+    <licenseUrl>https://github.com/crpietschmann/jslinq/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/crpietschmann/jslinq</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>LINQ to JavaScript (JSLINQ) is an implementation of LINQ to Objects for JavaScript. It is simple to use and gives much needed power and flexibility to performing LINQ style queries agains traditional JavaScript Arrays. If you are using an Array, you can use LINQ to JavaScript to step up your game.</description>
-    <releaseNotes>http://jslinq.codeplex.com/releases/view/28886</releaseNotes>
-    <copyright>Copyright (c) 2013 Chris Pietschmann</copyright>
+    <releaseNotes>https://github.com/crpietschmann/jslinq/blob/master/Website/ReadMe.txt</releaseNotes>
+    <copyright>Copyright (c) 2013-2023 Chris Pietschmann</copyright>
     <tags>javascript js linq array objects</tags>
   </metadata>
 </package>
