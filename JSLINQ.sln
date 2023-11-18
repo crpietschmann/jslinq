@@ -31,6 +31,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website", "Website\", "{397
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{9CC0875D-29D0-447F-8231-E9F4D7F03C14}"
 	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
 		Nuget\jslinq.2.10.1.nupkg = Nuget\jslinq.2.10.1.nupkg
 		Nuget\jslinq.2.10.nupkg = Nuget\jslinq.2.10.nupkg
 		Nuget\NuGet.exe = Nuget\NuGet.exe
@@ -64,5 +65,8 @@ Global
 		{C9B10C36-5744-4D25-8BE8-1E993624D4DB} = {9CC0875D-29D0-447F-8231-E9F4D7F03C14}
 		{59D05196-6DEF-4FD2-95EF-E625094232BB} = {C9B10C36-5744-4D25-8BE8-1E993624D4DB}
 		{C4E3084D-1B0F-47F8-8CEE-8533E0E85EDD} = {59D05196-6DEF-4FD2-95EF-E625094232BB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {198ABC44-7984-4C66-A375-24F8807658F9}
 	EndGlobalSection
 EndGlobal
