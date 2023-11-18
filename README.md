@@ -25,9 +25,9 @@ If you don't know what LINQ it's a feature set in the .NET development framework
     ];
             
     var exampleArray = JSLINQ(myList)
-       .Where(function(item){ return item.FirstName == "Chris"; })
-       .OrderBy(function(item) { return item.FirstName; })
-       .Select(function(item){ return item.FirstName; });
+       .Where((item) => item.FirstName == "Chris")
+       .OrderBy((item) => item.FirstName)
+       .Select((item) => item.FirstName);
 
 ## Using LINQ to JavaScript
 
