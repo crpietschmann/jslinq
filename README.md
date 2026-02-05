@@ -6,6 +6,21 @@ LINQ to JavaScript (`JSLINQ`) is LINQ to Objects for JavaScript arrays, and adds
 
 LINQ to JavaScript (JSLINQ for short) is an implementation of LINQ to Objects implemented in JavaScript. It is built using a set of extension methods built on top of the JavaScript Array object. If you are using Arrays then you can use JSLINQ; it's that simple!
 
+## jDelivr CDN
+
+Latest version:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/crpietschmann/jslinq/dist/JSLINQ.js"></script>
+```
+
+JavaScript include for v2.30:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/crpietschmann/jslinq@2.30/dist/JSLINQ.js"></script>
+```
+
+
 ## Nuget Package
 
 [http://nuget.org/packages/jslinq](http://nuget.org/packages/jslinq)
