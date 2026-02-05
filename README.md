@@ -17,7 +17,7 @@ Latest version:
 JavaScript include for v2.30:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/crpietschmann/jslinq@2.30/dist/JSLINQ.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/crpietschmann/jslinq@v2.30/dist/JSLINQ.js"></script>
 ```
 
 
